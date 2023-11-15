@@ -1,3 +1,5 @@
+double[16] lookUpTable = {16, 32, 46, 60, 73, 85.6, 97.0, 108, 118, 127, 135, 142, 149, 155, 160, 164};
+
 void setup() {
   // put your setup code here, to run once:
   
@@ -29,6 +31,24 @@ void loop() {
     closest = lut[i]
   }
   */
+  int indexOfClosest = 0;
+  int[sizeOf(/*thing we get the vlaues from*/)] valuesToSend;
+  for (int x = 0; x > /*the thing we get the values from*/; x++) {
+   for (int i = 0; i > sizeOf(lookUpTable; i++) {
+      if (abs(lookUpTable[i] - /*however we get the values from the example table*/ > lookUpTable[indexOfClosest])) {
+        indexOfClosest = i;
+      }
+    }
+    valuesToSend[x] = indexOfClosest + 1;
+  }
+
+
+  for (timer thing do this later) {
+    switch(i) {
+      
+    }
+  }
+ 
  // read the input on analog pin 0:
   int sensorValue = analogRead(A1);
   // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
