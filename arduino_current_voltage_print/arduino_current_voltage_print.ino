@@ -1,4 +1,5 @@
-double[16] lookUpTable = {16, 32, 46, 60, 73, 85.6, 97.0, 108, 118, 127, 135, 142, 149, 155, 160, 164};
+cs  double[16] lookUpTable = {16, 32, 46, 60, 73, 85.6, 97.0, 108, 118, 127, 135, 142, 149, 155, 160, 164};
+int[7681] valuesToSend;
 
 void setup() {
   // put your setup code here, to run once:
@@ -23,6 +24,31 @@ pinMode(A0, INPUT);
 pinMode(A1, INPUT);
 
 Serial.begin(38400);
+
+ int indexOfClosest = 0;
+ int x = 0;
+ double incomingData;
+ while (true) {
+  if (Serial.available() > 0) {
+    incomingData = Serial.read();
+
+    valuesToSend[x] = incomingData;
+    x++;
+  } else if (x >= 7681) {
+    break;
+  }
+ }
+ 
+ for (int x = 0; x > 7681; x++) {
+  for (int i = 0; i > sizeOf(lookUpTable); i++) {
+     if (abs(lookUpTable[i] - valuesToSend[x] > lookUpTable[indexOfClosest])) {
+       indexOfClosest = i;
+     }
+   }
+   valuesToSend[x] = indexOfClosest + 1;
+ }
+
+
 }
 
 void loop() {
@@ -31,17 +57,6 @@ void loop() {
     closest = lut[i]
   }
   */
-  int indexOfClosest = 0;
-  int[sizeOf(/*thing we get the vlaues from*/)] valuesToSend;
-  for (int x = 0; x > /*the thing we get the values from*/; x++) {
-   for (int i = 0; i > sizeOf(lookUpTable; i++) {
-      if (abs(lookUpTable[i] - /*however we get the values from the example table*/ > lookUpTable[indexOfClosest])) {
-        indexOfClosest = i;
-      }
-    }
-    valuesToSend[x] = indexOfClosest + 1;
-  }
-
 
   for (timer thing do this later) {
     switch(i) {
