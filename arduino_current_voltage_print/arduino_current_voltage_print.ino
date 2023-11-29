@@ -53,134 +53,89 @@ Serial.begin(38400);
 
 void loop() {
 
-  for (timer thing do this later) {
+  for (c = 0; c <= 7500; c++) {
     switch(valuesToSend) {
       case 16:
         digitalWrite(22, HIGH);
       break;
       
       case 32:
-      for (b = 23; b <=37; b++){
-        digitalWrite(b, HIGH);
-        if (b > 23) {
-          digitalWrite(b, LOW);
-        }
-      }
+      digitalWrite(22, HIGH);
+      digitalWrite(23, HIGH);
       break;
       
       case 46:
-      for (b = 23; b <=37; b++){
-        digitalWrite(b, HIGH);
-        if (b > 24) {
-          digitalWrite(b, LOW);
-        }
-      }
+      digitalWrite(22, HIGH);
+      digitalWrite(23, HIGH);
+      digitalWrite(24, HIGH);
       break;
       
       case 60:
-      for (b = 23; b <=37; b++){
-        digitalWrite(b, HIGH);
-        if (b > 25) {
-          digitalWrite(b, LOW);
-        }
-      }
+      digitalWrite(22, HIGH);
+      digitalWrite(23, HIGH);
+      digitalWrite(24, HIGH);
+      digitalWrite(25, HIGH);
       break;
 
       case 73:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=26; b++){
         digitalWrite(b, HIGH);
-        if (b > 26) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       case 85.6:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=27; b++){
         digitalWrite(b, HIGH);
-        if (b > 27) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       case 97:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=28; b++){
         digitalWrite(b, HIGH);
-        if (b > 28) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       case 108:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=29; b++){
         digitalWrite(b, HIGH);
-        if (b > 29) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       case 118:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=30; b++){
         digitalWrite(b, HIGH);
-        if (b > 30) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       case 127:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=31; b++){
         digitalWrite(b, HIGH);
-        if (b > 31) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       case 135:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=32; b++){
         digitalWrite(b, HIGH);
-        if (b > 32) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       case 142:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=33; b++){
         digitalWrite(b, HIGH);
-        if (b > 33) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       case 149:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=34; b++){
         digitalWrite(b, HIGH);
-        if (b > 34) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       case 155:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=35; b++){
         digitalWrite(b, HIGH);
-        if (b > 35) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       case 160:
-      for (b = 23; b <=37; b++){
+      for (b = 23; b <=36; b++){
         digitalWrite(b, HIGH);
-        if (b > 36) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       
       case 164:
       for (b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
-        if (b > 37) {
-          digitalWrite(b, LOW);
-        }
       break;
       }
       
@@ -189,9 +144,11 @@ void loop() {
         digitalWrite(a, LOW);
       }
     }
-  }
-  for (a = 22; a <=37; a++){
-    digitalWrite(a, LOW);
+    for (a = 23; a <=37; a++){
+        digitalWrite(a, LOW);
+     }
+     delay(20);
+     VIPrint(analogRead(A1));
   }
 }
  
