@@ -58,97 +58,142 @@ void loop() {
       case 16:
         digitalWrite(22, HIGH);
       break;
-      
+
       case 32:
-      digitalWrite(22, HIGH);
-      digitalWrite(23, HIGH);
+      for (int b = 23; b <=37; b++){
+        digitalWrite(b, HIGH);
+        if (b > 23) {
+          digitalWrite(b, LOW);
+        }
+      }
       break;
-      
+
       case 46:
-      digitalWrite(22, HIGH);
-      digitalWrite(23, HIGH);
-      digitalWrite(24, HIGH);
+      for (int b = 23; b <=37; b++){
+        digitalWrite(b, HIGH);
+        if (b > 24) {
+          digitalWrite(b, LOW);
+        }
+      }
       break;
-      
+
       case 60:
-      digitalWrite(22, HIGH);
-      digitalWrite(23, HIGH);
-      digitalWrite(24, HIGH);
-      digitalWrite(25, HIGH);
+      for (int b = 23; b <=37; b++){
+        digitalWrite(b, HIGH);
+        if (b > 25) {
+          digitalWrite(b, LOW);
+        }
+      }
       break;
 
       case 73:
-      for (int b = 23; b <=26; b++){
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 26) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
-      case 86:
-      for (int b = 23; b <=27; b++){
+      case 85.6:
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 27) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
       case 97:
-      for (int b = 23; b <=28; b++){
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 28) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
       case 108:
-      for (int b = 23; b <=29; b++){
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 29) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
       case 118:
-      for (int b = 23; b <=30; b++){
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 30) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
       case 127:
-      for (int b = 23; b <=31; b++){
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 31) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
       case 135:
-      for (int b = 23; b <=32; b++){
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 32) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
       case 142:
-      for (int b = 23; b <=33; b++){
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 33) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
       case 149:
-      for (int b = 23; b <=34; b++){
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 34) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
       case 155:
-      for (int b = 23; b <=35; b++){
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 35) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
       case 160:
-      for (int b = 23; b <=36; b++){
+      for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 36) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
-      
+
       case 164:
       for (int b = 23; b <=37; b++){
         digitalWrite(b, HIGH);
+        if (b > 37) {
+          digitalWrite(b, LOW);
+        }
       break;
       }
-      
+
       default:
       for (int a = 23; a <=37; a++){
         digitalWrite(a, LOW);
       }
     }
-    for (int a = 23; a <=37; a++){
-        digitalWrite(a, LOW);
-     }
-     delay(100);
-     VIPrint(analogRead(A1));
+    delay(1000);
+    VIPrint(analogRead(A1));
+  }
+  for (int a = 22; a <=37; a++){
+    digitalWrite(a, LOW);
   }
 }
  
