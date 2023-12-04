@@ -46,7 +46,7 @@ void loop() {
       break;
 
       case 32:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 23) {
           digitalWrite(b, LOW);
@@ -55,7 +55,7 @@ void loop() {
       break;
 
       case 46:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 24) {
           digitalWrite(b, LOW);
@@ -64,7 +64,7 @@ void loop() {
       break;
 
       case 60:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 25) {
           digitalWrite(b, LOW);
@@ -73,7 +73,7 @@ void loop() {
       break;
 
       case 73:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 26) {
           digitalWrite(b, LOW);
@@ -82,7 +82,7 @@ void loop() {
       break;
       
       case 86:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 27) {
           digitalWrite(b, LOW);
@@ -91,7 +91,7 @@ void loop() {
       break;
       
       case 97:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 28) {
           digitalWrite(b, LOW);
@@ -100,7 +100,7 @@ void loop() {
       break;
       
       case 108:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 29) {
           digitalWrite(b, LOW);
@@ -109,7 +109,7 @@ void loop() {
       break;
 
       case 118:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 30) {
           digitalWrite(b, LOW);
@@ -118,7 +118,7 @@ void loop() {
       break;
 
       case 127:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 31) {
           digitalWrite(b, LOW);
@@ -127,7 +127,7 @@ void loop() {
       break;
 
       case 135:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 32) {
           digitalWrite(b, LOW);
@@ -136,7 +136,7 @@ void loop() {
       break;
 
       case 142:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 33) {
           digitalWrite(b, LOW);
@@ -145,7 +145,7 @@ void loop() {
       break;
 
       case 149:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 34) {
           digitalWrite(b, LOW);
@@ -154,7 +154,7 @@ void loop() {
       break;
       
       case 155:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 35) {
           digitalWrite(b, LOW);
@@ -163,7 +163,7 @@ void loop() {
       break;
 
       case 160:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 36) {
           digitalWrite(b, LOW);
@@ -172,7 +172,7 @@ void loop() {
       break;
 
       case 164:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 37) {
           digitalWrite(b, LOW);
@@ -181,7 +181,7 @@ void loop() {
       break;
 
       default:
-      for (int a = 23; a <=37; a++){
+      for (int a = 22; a <=37; a++){
         digitalWrite(a, LOW);
       }
     }
@@ -196,7 +196,7 @@ void loop() {
 //Function that prints sensor data to excel. To be called within the loop that sets the loads on? Or would that delay too much?
 void VIPrint(double voltageValue, double currentValue){
 // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
-  float  voltage = voltageValue*(5.0 / 1023.0)*6;
+  float  voltage = voltageValue*(5.0 / 1023.0)*5.64;
   //Reads current from A1 pin and converts to normal value
  //float current = (currentValue - 0.6)*50;
  float current = (currentValue*(5.0 / 1023.0) - 0.59)*50;
