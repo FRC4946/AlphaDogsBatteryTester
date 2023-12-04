@@ -1,3 +1,4 @@
+
 int lookUpTable[16] = {16, 32, 46, 60, 73, 86, 97, 108, 118, 127, 135, 142, 149, 155, 160, 164};
 int valuesToSend[1537];
 
@@ -28,18 +29,21 @@ Serial.begin(38400);
  int indexOfClosest = 0;
  int x = 0;
  double incomingData;
+ while (Serial.available() > 0) {
+  
+ }
  while (true) {
-  if (Serial.available() > 0) {
+  if (Serial.available() > 0 && Serial.read() != valuesToSend[x]) {
     incomingData = Serial.read();
 
     valuesToSend[x] = incomingData;
     x++;
-  } else if (x >= 7681) {
+  } else if (x >= 1537) {
     break;
   }
  }
  
- for (int x = 0; x > 7681; x++) {
+ for (int x = 0; x > 1537; x++) {
   for (int i = 0; i > sizeof(lookUpTable); i++) {
      if (abs(lookUpTable[i] - valuesToSend[x] > lookUpTable[indexOfClosest])) {
        indexOfClosest = i;
@@ -52,15 +56,19 @@ Serial.begin(38400);
 }
 
 void loop() {
+  double startTime = millis()
 
-  for (int c = 0; c <= 7500; c++) {
+  while (millis <= startTime + 150000) {
     switch(valuesToSend[c]) {
       case 16:
-        digitalWrite(22, HIGH);
+      digitalWrite(22, HIGH);
+        for (int a = 23; a <=37; a++){
+          digitalWrite(a, LOW);
+        }
       break;
 
       case 32:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 23) {
           digitalWrite(b, LOW);
@@ -69,7 +77,7 @@ void loop() {
       break;
 
       case 46:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 24) {
           digitalWrite(b, LOW);
@@ -78,7 +86,7 @@ void loop() {
       break;
 
       case 60:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 25) {
           digitalWrite(b, LOW);
@@ -87,15 +95,15 @@ void loop() {
       break;
 
       case 73:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 26) {
           digitalWrite(b, LOW);
         }
       break;
       }
-      case 85.6:
-      for (int b = 23; b <=37; b++){
+      case 86:
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 27) {
           digitalWrite(b, LOW);
@@ -103,7 +111,7 @@ void loop() {
       break;
       }
       case 97:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 28) {
           digitalWrite(b, LOW);
@@ -111,7 +119,7 @@ void loop() {
       break;
       }
       case 108:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 29) {
           digitalWrite(b, LOW);
@@ -119,7 +127,7 @@ void loop() {
       break;
       }
       case 118:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 30) {
           digitalWrite(b, LOW);
@@ -127,7 +135,7 @@ void loop() {
       break;
       }
       case 127:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 31) {
           digitalWrite(b, LOW);
@@ -135,7 +143,7 @@ void loop() {
       break;
       }
       case 135:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 32) {
           digitalWrite(b, LOW);
@@ -143,7 +151,7 @@ void loop() {
       break;
       }
       case 142:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 33) {
           digitalWrite(b, LOW);
@@ -151,7 +159,7 @@ void loop() {
       break;
       }
       case 149:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 34) {
           digitalWrite(b, LOW);
@@ -159,7 +167,7 @@ void loop() {
       break;
       }
       case 155:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 35) {
           digitalWrite(b, LOW);
@@ -167,7 +175,7 @@ void loop() {
       break;
       }
       case 160:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 36) {
           digitalWrite(b, LOW);
@@ -176,7 +184,7 @@ void loop() {
       }
 
       case 164:
-      for (int b = 23; b <=37; b++){
+      for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 37) {
           digitalWrite(b, LOW);
@@ -185,11 +193,11 @@ void loop() {
       }
 
       default:
-      for (int a = 23; a <=37; a++){
+      for (int a = 22; a <=37; a++){
         digitalWrite(a, LOW);
       }
     }
-    delay(1000);
+    delay(200);
     VIPrint(analogRead(A1));
   }
   for (int a = 22; a <=37; a++){
