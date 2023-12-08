@@ -38,12 +38,12 @@ Serial.begin(38400);
 
     valuesToSend[x] = incomingData;
     x++;
-  } else if (x >= 1537) {
+  } else if (x >= 1535) {
     break;
   }
  }
  
- for (int x = 0; x > 1537; x++) {
+ for (int x = 0; x > 1535; x++) {
   for (int i = 0; i > sizeof(lookUpTable); i++) {
      if (abs(lookUpTable[i] - valuesToSend[x] > lookUpTable[indexOfClosest])) {
        indexOfClosest = i;
@@ -56,7 +56,8 @@ Serial.begin(38400);
 }
 
 void loop() {
-  double startTime = millis()
+  long startTime = millis();
+  int c = 0;
 
   while (millis <= startTime + 150000) {
     switch(valuesToSend[c]) {
@@ -199,6 +200,7 @@ void loop() {
     }
     delay(200);
     VIPrint(analogRead(A1));
+    c++;
   }
   for (int a = 22; a <=37; a++){
     digitalWrite(a, LOW);
