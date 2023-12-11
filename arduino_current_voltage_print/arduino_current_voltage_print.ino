@@ -199,7 +199,7 @@ void loop() {
       }
     }
     delay(200);
-    VIPrint(analogRead(A1));
+    VIPrint(analogRead(A0), analogRead(A1));
     c++;
   }
   for (int a = 22; a <=37; a++){
@@ -208,11 +208,12 @@ void loop() {
 }
  
 //Function that prints sensor data to excel. To be called within the loop that sets the loads on? Or would that delay too much?
-void VIPrint(double sensorValue){
+void VIPrint(double voltageValue, double currentValue){
 // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
-  float  voltage = sensorValue*(5.0 / 1023.0);
-  //Gets current based on voltage
- float current = (voltage - 0.6)*50;
+  float  voltage = voltageValue*(5.0 / 1023.0)*5.64;
+  //Reads current from A1 pin and converts to normal value
+ //float current = (currentValue - 0.6)*50;
+ float current = (currentValue*(5.0 / 1023.0) - 0.59)*50;
 
 //Prints voltage and current to excel
   Serial.print(voltage); 
