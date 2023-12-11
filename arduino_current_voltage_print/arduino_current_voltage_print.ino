@@ -23,6 +23,7 @@ pinMode(36, OUTPUT);
 pinMode(37, OUTPUT);
 
 pinMode(A1, INPUT);
+pinMode(A0, INPUT);
 
 Serial.begin(38400);
 
