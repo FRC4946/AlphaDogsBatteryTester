@@ -39,13 +39,15 @@ Serial.begin(38400);
 
     valuesToSend[x] = incomingData;
     x++;
+    Serial.print("recived");
   } else if (x >= 1535) {
+    Serial.print("sent all");
     break;
   }
  }
  
- for (int x = 0; x > 1535; x++) {
-  for (int i = 0; i > sizeof(lookUpTable); i++) {
+ for (int x = 0; x < 1535; x++) {
+  for (int i = 0; i < sizeof(lookUpTable); i++) {
      if (abs(lookUpTable[i] - valuesToSend[x] > lookUpTable[indexOfClosest])) {
        indexOfClosest = i;
      }
