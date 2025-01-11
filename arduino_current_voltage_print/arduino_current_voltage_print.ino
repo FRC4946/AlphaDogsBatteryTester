@@ -29,11 +29,16 @@ pinMode(A0, INPUT);
 pinMode(A1, INPUT);
 
 Serial.begin(9600);
-
+bool dieded = false;
 }
 
 void loop() {
-
+ if(dieded){
+  for (int a = 22; a <=37; a++){
+        digitalWrite(a, LOW);
+   }
+  exit();
+}else{
   for (int c = 0; c <= 199; c++) {
     switch(roundedCurrent[c]) {
       case 16:
@@ -188,6 +193,7 @@ void loop() {
     delay(1000);
      VIPrint(analogRead(A0), analogRead(A1));
   }
+}
   for (int a = 22; a <=37; a++){
     digitalWrite(a, LOW);
   }
@@ -207,4 +213,11 @@ void VIPrint(double voltageValue, double currentValue){
   Serial.print(current); 
   Serial.print(",");
   Serial.println();
+}
+
+double getWatts(){
+  float  voltage = voltageValue*(5.0 / 1023.0)*5.64;
+  float current = (currentValue*(5.0 / 1023.0) - 0.59)*50;
+
+  return voltage*current;
 }
