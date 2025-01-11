@@ -1,6 +1,9 @@
-
-int lookUpTable[16] = {16, 32, 46, 60, 73, 86, 97, 108, 118, 127, 135, 142, 149, 155, 160, 164};
-int valuesToSend[1537];
+int roundedCurrent[200] = {0, 16, 16, 32, 46, 32, 16, 16, 16, 46, 60, 46, 16, 16, 16, 46, 86, 46, 16, 16, 16, 60, 108, 60, 16, 16, 16, 73, 127, 73, 16, 16, 16,
+86, 142, 86, 16, 16, 16, 97, 155, 97, 16, 16, 16, 108, 164, 108, 16, 16, 32, 46, 32, 16, 16, 16, 46, 60, 46, 16, 16, 16, 46, 86, 46, 16, 16, 16, 60,
+108, 60, 16, 16, 16, 73, 127, 73, 16, 16, 16, 86, 142, 86, 16, 16, 16, 97, 155, 97, 16, 16, 16, 108, 164, 108, 16, 16, 16, 32, 46, 32, 16, 16, 16, 46,
+60, 46, 16, 16, 16, 46, 86, 46, 16, 16, 16, 60, 108, 60, 16, 16, 16, 73, 127, 73, 16, 16, 16, 86, 142, 86, 16, 16, 16, 97, 155, 97, 16, 16, 16, 108,
+164, 108, 16, 16, 16, 16, 16, 16, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16, 0, 16,
+ 0, 16, 0, 16, 0, 16, 0, 16, 16, 0, 16, 0, 16, 0, 6, 0, 16};
 
 void setup() {
   // put your setup code here, to run once:
@@ -22,53 +25,24 @@ pinMode(35, OUTPUT);
 pinMode(36, OUTPUT);
 pinMode(37, OUTPUT);
 
-pinMode(A1, INPUT);
 pinMode(A0, INPUT);
+pinMode(A1, INPUT);
 
-Serial.begin(38400);
-
- int indexOfClosest = 0;
- int x = 0;
- double incomingData;
- while (Serial.available() > 0) {
-  
- }
- while (true) {
-  if (Serial.available() > 0 && Serial.read() != valuesToSend[x]) {
-    incomingData = Serial.read();
-
-    valuesToSend[x] = incomingData;
-    x++;
-    Serial.print("recived");
-  } else if (x >= 1535) {
-    Serial.print("sent all");
-    break;
-  }
- }
- 
- for (int x = 0; x < 1535; x++) {
-  for (int i = 0; i < sizeof(lookUpTable); i++) {
-     if (abs(lookUpTable[i] - valuesToSend[x] > lookUpTable[indexOfClosest])) {
-       indexOfClosest = i;
-     }
-   }
-   valuesToSend[x] = indexOfClosest + 1;
- }
-
+Serial.begin(9600);
 
 }
 
 void loop() {
-  long startTime = millis();
-  int c = 0;
 
-  while (millis <= startTime + 150000) {
-    switch(valuesToSend[c]) {
+  for (int c = 0; c <= 199; c++) {
+    switch(roundedCurrent[c]) {
       case 16:
-      digitalWrite(22, HIGH);
-        for (int a = 23; a <=37; a++){
-          digitalWrite(a, LOW);
+      for (int b = 22; b <=37; b++){
+        digitalWrite(b, HIGH);
+        if (b > 22) {
+          digitalWrite(b, LOW);
         }
+      }
       break;
 
       case 32:
@@ -104,88 +78,98 @@ void loop() {
         if (b > 26) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
+      
       case 86:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 27) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
+      
       case 97:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 28) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
+      
       case 108:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 29) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
+
       case 118:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 30) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
+
       case 127:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 31) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
+
       case 135:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 32) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
+
       case 142:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 33) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
+
       case 149:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 34) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
+      
       case 155:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 35) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
+
       case 160:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
         if (b > 36) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
 
       case 164:
       for (int b = 22; b <=37; b++){
@@ -193,23 +177,22 @@ void loop() {
         if (b > 37) {
           digitalWrite(b, LOW);
         }
-      break;
       }
+      break;
 
       default:
       for (int a = 22; a <=37; a++){
         digitalWrite(a, LOW);
       }
     }
-    delay(200);
-    VIPrint(analogRead(A0), analogRead(A1));
-    c++;
+    delay(1000);
+     VIPrint(analogRead(A0), analogRead(A1));
   }
   for (int a = 22; a <=37; a++){
     digitalWrite(a, LOW);
   }
 }
- 
+
 //Function that prints sensor data to excel. To be called within the loop that sets the loads on? Or would that delay too much?
 void VIPrint(double voltageValue, double currentValue){
 // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
