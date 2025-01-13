@@ -30,6 +30,7 @@ pinMode(A1, INPUT);
 
 Serial.begin(9600);
 bool dieded = false;
+double startTime = millis();
 }
 
 void loop() {
@@ -40,6 +41,13 @@ void loop() {
   exit();
 }else{
   for (int c = 0; c <= 199; c++) {
+   if (millis() - startTime > 5000) {
+        double watts = getWatts();
+        if (watts < 180) {
+          dieded = true; // Mark system as "dieded"
+          break;
+        }
+      }
     switch(roundedCurrent[c]) {
       case 16:
       for (int b = 22; b <=37; b++){
