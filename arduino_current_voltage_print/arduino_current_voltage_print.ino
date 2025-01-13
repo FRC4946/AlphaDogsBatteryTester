@@ -224,8 +224,8 @@ void VIPrint(double voltageValue, double currentValue){
 }
 
 double getWatts(){
-  float  voltage = voltageValue*(5.0 / 1023.0)*5.64;
-  float current = (currentValue*(5.0 / 1023.0) - 0.59)*50;
+  float  voltage = analogRead(A0)*(5.0 / 1023.0)*5.64;
+  float current = (analogRead(A1)*(5.0 / 1023.0) - 0.59)*50;
 
   return voltage*current;
 }
