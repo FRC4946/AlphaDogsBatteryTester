@@ -38,7 +38,6 @@ void loop() {
   for (int a = 22; a <=37; a++){
         digitalWrite(a, LOW);
    }
-  exit();
 }else{
   for (int c = 0; c <= 199; c++) {
    if (millis() - startTime > 5000) {
