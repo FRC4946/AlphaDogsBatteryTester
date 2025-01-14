@@ -7,7 +7,7 @@ int roundedCurrent[200] = {0, 16, 16, 32, 46, 32, 16, 16, 16, 46, 60, 46, 16, 16
 
 void setup() {
   // put your setup code here, to run once:
-  
+ 
 pinMode(22, OUTPUT);
 pinMode(23, OUTPUT);
 pinMode(24, OUTPUT);
@@ -29,24 +29,30 @@ pinMode(A0, INPUT);
 pinMode(A1, INPUT);
 
 Serial.begin(9600);
-bool dieded = false;
-double startTime = millis();
 }
 
 void loop() {
- if(dieded){
-  for (int a = 22; a <=37; a++){
-        digitalWrite(a, LOW);
-   }
-}else{
+bool dieded = false;
+double startTime = millis();
+
+  //cycles through all 200 values of the array
   for (int c = 0; c <= 199; c++) {
-   if (millis() - startTime > 5000) {
-        double watts = getWatts();
+    double watts = getWatts();
+    //runs program unless wattage has gone below 180
+    if(dieded){
+      //turns off all motors if watts goes below 180
+       for (int a = 22; a <=37; a++){
+        digitalWrite(a, LOW);
+      }
+    }else{
+      //checks watts after the first 5 seconds
+      if (millis() - startTime > 5000) {
         if (watts < 180) {
           dieded = true; // Mark system as "dieded"
           break;
         }
       }
+      //sets resistors coresponding to the current array value
     switch(roundedCurrent[c]) {
       case 16:
       for (int b = 22; b <=37; b++){
@@ -92,7 +98,7 @@ void loop() {
         }
       }
       break;
-      
+     
       case 86:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
@@ -101,7 +107,7 @@ void loop() {
         }
       }
       break;
-      
+     
       case 97:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
@@ -110,7 +116,7 @@ void loop() {
         }
       }
       break;
-      
+     
       case 108:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
@@ -164,7 +170,7 @@ void loop() {
         }
       }
       break;
-      
+     
       case 155:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
@@ -193,37 +199,40 @@ void loop() {
       break;
 
       default:
+      //turns off all pins if an incorrect value is entered
       for (int a = 22; a <=37; a++){
         digitalWrite(a, LOW);
       }
     }
     delay(1000);
+    //sends voltage and current to serial port
      VIPrint(analogRead(A0), analogRead(A1));
+    }
   }
-}
+  //turns off all pins once the array is done
   for (int a = 22; a <=37; a++){
     digitalWrite(a, LOW);
   }
 }
 
-//Function that prints sensor data to excel. To be called within the loop that sets the loads on? Or would that delay too much?
+//Function that prints sensor data to excel
 void VIPrint(double voltageValue, double currentValue){
-// Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
-  float  voltage = voltageValue*(5.0 / 1023.0)*5.64;
-  //Reads current from A1 pin and converts to normal value
- //float current = (currentValue - 0.6)*50;
+// Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V)
+  float  voltage = voltageValue*(5.0 / 1023.0)*5.64;  
+//Converts the analog reading from 0 - 1023 to a current
  float current = (currentValue*(5.0 / 1023.0) - 0.59)*50;
 
 //Prints voltage and current to excel
-  Serial.print(voltage); 
-  Serial.print(","); 
-  Serial.print(current); 
+  Serial.print(voltage);
+  Serial.print(",");
+  Serial.print(current);
   Serial.print(",");
   Serial.println();
 }
 
+//returns watts
 double getWatts(){
-  float  voltage = (analogRead(A0)*(5.0 / 1023.0)*5.64;
+  float  voltage = analogRead(A0)*(5.0 / 1023.0)*5.64;
   float current = (analogRead(A1)*(5.0 / 1023.0) - 0.59)*50;
 
   return voltage*current;
