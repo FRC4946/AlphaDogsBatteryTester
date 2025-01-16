@@ -31,29 +31,59 @@ pinMode(A1, INPUT);
 Serial.begin(9600);
 }
 
-void loop() {
-bool dieded = false;
-double startTime = millis();
+//returns watts
+double getWatts(){
+  float  voltage = analogRead(A0)*(5.0 / 1023.0)*5.64;
+  float current = (analogRead(A1)*(5.0 / 1023.0) - 0.59)*50;
 
-  //cycles through all 200 values of the array
+  return voltage*current;
+}
+
+//Function that prints sensor data to excel
+void VIPrint(double voltageValue, double currentValue){
+// Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V)
+  float  voltage = voltageValue*(5.0 / 1023.0)*5.64;  
+//Converts the analog reading from 0 - 1023 to a current
+ float current = (currentValue*(5.0 / 1023.0) - 0.59)*50;
+
+//Prints voltage and current to excel
+  Serial.print(voltage);
+  Serial.print(",");
+  Serial.print(current);
+  Serial.print(",");
+  Serial.println();
+}
+
+void loop() {
+  static bool dieded = false;  // Keep the status persistent across loop calls
+  static double startTime = millis();
+
+  // If dieded is true, turn off all pins permanently
+  if (dieded) {
+    for (int a = 22; a <= 37; a++) {
+      digitalWrite(a, LOW);
+    }
+    return;  // Exit the loop to prevent further execution
+  }
+
+  // Cycle through all 200 values of the array
   for (int c = 0; c <= 199; c++) {
     double watts = getWatts();
-    //runs program unless wattage has gone below 180
-    if(dieded){
-      //turns off all motors if watts goes below 180
-       for (int a = 22; a <=37; a++){
-        digitalWrite(a, LOW);
-      }
-    }else{
-      //checks watts after the first 5 seconds
-      if (millis() - startTime > 5000) {
-        if (watts < 180) {
-          dieded = true; // Mark system as "dieded"
-          break;
+
+    // Check watts after the first 5 seconds
+    if (millis() - startTime > 5000) {
+      if (watts < 180) {
+        dieded = true;  // Mark system as "dieded"
+        // Turn off all pins immediately
+        for (int a = 22; a <= 37; a++) {
+          digitalWrite(a, LOW);
         }
+        return;  // Exit the loop to stop further processing
       }
-      //sets resistors coresponding to the current array value
-    switch(roundedCurrent[c]) {
+    }
+
+    // Execute the pin-setting logic only if system is not "dieded"
+        switch(roundedCurrent[c]) {
       case 16:
       for (int b = 22; b <=37; b++){
         digitalWrite(b, HIGH);
@@ -208,32 +238,10 @@ double startTime = millis();
     //sends voltage and current to serial port
      VIPrint(analogRead(A0), analogRead(A1));
     }
+    // Turn off all pins once the array is done
+     for (int a = 22; a <= 37; a++) {
+      digitalWrite(a, LOW);
+    }
+
   }
-  //turns off all pins once the array is done
-  for (int a = 22; a <=37; a++){
-    digitalWrite(a, LOW);
-  }
-}
 
-//Function that prints sensor data to excel
-void VIPrint(double voltageValue, double currentValue){
-// Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V)
-  float  voltage = voltageValue*(5.0 / 1023.0)*5.64;  
-//Converts the analog reading from 0 - 1023 to a current
- float current = (currentValue*(5.0 / 1023.0) - 0.59)*50;
-
-//Prints voltage and current to excel
-  Serial.print(voltage);
-  Serial.print(",");
-  Serial.print(current);
-  Serial.print(",");
-  Serial.println();
-}
-
-//returns watts
-double getWatts(){
-  float  voltage = analogRead(A0)*(5.0 / 1023.0)*5.64;
-  float current = (analogRead(A1)*(5.0 / 1023.0) - 0.59)*50;
-
-  return voltage*current;
-}
